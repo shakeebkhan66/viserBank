@@ -1,0 +1,96 @@
+name: viser_bank
+description: A new Flutter project.
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dotted_line: ^3.1.0
+  cupertino_icons: ^1.0.2
+  get: ^4.6.5
+#  google_fonts: ^3.0.1
+  dotted_border: any
+  flutter_svg: any
+  flutter_svg_provider: any
+#  dropdown_formfield:
+  http: any
+  lottie: any
+  carousel_slider: any
+  file_picker: any
+  image_picker: any
+  shared_preferences: any
+  flutter_rating_bar: any
+  path_provider: any
+  country_picker: any
+  intl: any
+  pin_code_fields: any
+  webview_flutter: any
+  url_launcher: any
+  flutter_widget_from_html: any
+  font_awesome_flutter:
+  share_plus: any
+  animated_bottom_navigation_bar: any
+  auto_size_text: any
+  flutter_spinkit: any
+  shimmer: any
+  octo_image: any
+  bottom_navy_bar: any
+  simple_animations: any
+  cached_network_image:
+  smooth_page_indicator: any
+  firebase_messaging: any
+  flutter_local_notifications: any
+  firebase_analytics: any
+  firebase_core: any
+  awesome_dialog: any
+  circular_countdown_timer: any
+  dio: any
+  otp_timer_button: any
+  percent_indicator: any
+  connectivity_plus: any
+  permission_handler: any
+  flutter_inappwebview: ^6.0.0
+  animated_splash_screen: ^1.3.0
+  google_nav_bar: ^5.0.6
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/menu/
+    - assets/images/common/
+    - assets/images/transfer/
+    - assets/icons/
+    - assets/animation/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/mulish/Mulish-Light.ttf
+          weight: 300
+        - asset: assets/fonts/mulish/Mulish-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/mulish/Mulish-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/mulish/Mulish-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/mulish/Mulish-Bold.ttf
+          weight: 700
