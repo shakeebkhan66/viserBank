@@ -108,6 +108,7 @@ class _MyBankTransferScreenState extends State<MyBankTransferScreen> {
                 return MyBankTransferListItem(
                     accountName: controller.beneficiaryList[index].accountName??'',
                     accountNumber: controller.beneficiaryList[index].accountNumber??'',
+                    accountType: controller.beneficiaryList[index].sentTo?.accountType ??'',
                     shortName: controller.beneficiaryList[index].shortName??'',
                     index: index
                 );

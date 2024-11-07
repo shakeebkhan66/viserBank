@@ -26,7 +26,8 @@ class MyBankTransferController extends GetxController{
   MyBankTransferController({required this.repo,required this.beneficiaryRepo});
 
   bool isLoading = true;
-  List<Data> beneficiaryList = [];
+  List<MyBankBeneficiaryDatum> beneficiaryList = [];
+  List<MyBankBeneficiaryDatum> beneficiaryList2 = [];
 
   int page = 1;
   String nextPageUrl = "";
@@ -78,7 +79,7 @@ class MyBankTransferController extends GetxController{
       MyBankBeneficiaryResponseModel model = MyBankBeneficiaryResponseModel.fromJson(jsonDecode(responseModel.responseJson));
       nextPageUrl = model.data?.beneficiaries?.nextPageUrl ?? "";
       if(model.status.toString().toLowerCase() == "success"){
-        List<Data>? tempBeneficiaryList = model.data?.beneficiaries?.data;
+        List<MyBankBeneficiaryDatum>? tempBeneficiaryList = model.data?.beneficiaries?.data;
         loadLimit(model);
         if(tempBeneficiaryList != null && tempBeneficiaryList.isNotEmpty){
           beneficiaryList.addAll(tempBeneficiaryList);

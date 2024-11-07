@@ -251,12 +251,14 @@ class TransactionInfo {
   String? firstname;
   String? lastname;
   String? accountNumber;
+  String? accountType;
 
   TransactionInfo({
     this.type,
     this.firstname,
     this.lastname,
     this.accountNumber,
+    this.accountType,
   });
 
   factory TransactionInfo.fromJson(Map<String, dynamic> json) => TransactionInfo(
@@ -264,6 +266,7 @@ class TransactionInfo {
     firstname: json["firstname"],
     lastname: json["lastname"],
     accountNumber: json["account_number"],
+    accountType: json["account_type"]
   );
 
   Map<String, dynamic> toJson() => {
@@ -271,5 +274,6 @@ class TransactionInfo {
     "firstname": firstname,
     "lastname": lastname,
     "account_number": accountNumber,
+    "account_type": accountType
   };
 }

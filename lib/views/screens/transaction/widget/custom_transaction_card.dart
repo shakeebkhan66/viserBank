@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -166,7 +167,6 @@ import '../../../../core/utils/style.dart';
 //   }
 // }
 
-
 class CustomTransactionCard extends StatefulWidget {
   final String trxData;
   final String dateData;
@@ -222,10 +222,7 @@ class _CustomTransactionCardState extends State<CustomTransactionCard> {
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
-              colors: [
-                Colors.cyan.shade50,
-                Colors.cyan.shade50
-              ],
+              colors: [Colors.cyan.shade50, Colors.cyan.shade50],
             ),
             boxShadow: [
               BoxShadow(
@@ -273,67 +270,195 @@ class _CustomTransactionCardState extends State<CustomTransactionCard> {
               //   ],
               // ),
               const SizedBox(height: 0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 110,
-                    height: 25,
-                    child: CardColumn2(
-                      alignmentEnd: true,
-                      header: MyStrings.date.tr,
-                      body: formattedDate.tr,
-                      isDate: true,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      width: 110,
+                      height: 25,
+                      alignment: Alignment.topLeft,
+                      child: CardColumn2(
+                        alignmentEnd: true,
+                        header: MyStrings.date.tr,
+                        body: formattedDate.tr,
+                        isDate: true,
+                      ),
                     ),
-                  ),
-                  widget.transactionInfo.type == null
-                      ? Padding(
-                        padding: const EdgeInsets.only(right: 50.0),
-                        child: Column(
-                            children: [
-                              Text(
-                                  "${widget.transactionInfo.firstname!} ${widget.transactionInfo.lastname!}",
-                                  style: interRegularDefault.copyWith(
-                                      fontStyle: FontStyle.italic,
-                                      color: MyColor.smallTextColor1,
-                                      fontSize: Dimensions.fontSmall)),
-                              Text("${widget.transactionInfo.accountNumber}",
-                                  style: interRegularDefault.copyWith(
-                                      fontStyle: FontStyle.italic,
-                                      color: MyColor.smallTextColor1,
-                                      fontSize: Dimensions.fontSmall)),
-                            ],
+                    widget.transactionInfo.type == null
+                        ? Padding(
+                            padding: const EdgeInsets.only(right: 50.0),
+                            child: widget.transactionInfo.accountType ==
+                                    "company"
+                                ? Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.apartment_sharp,
+                                            size: 12,
+                                            color: MyColor.primaryColor,
+                                          ),
+                                          const SizedBox(
+                                            width: 8.0,
+                                          ),
+                                          Text(
+                                              "${widget.transactionInfo.firstname!} ${widget.transactionInfo.lastname!}",
+                                              style:
+                                                  interRegularDefault.copyWith(
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                      color: MyColor
+                                                          .smallTextColor1,
+                                                      fontSize: Dimensions
+                                                          .fontSmall)),
+                                        ],
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 22.0),
+                                        child: Text(
+                                            "${widget.transactionInfo.accountNumber}",
+                                            style: interRegularDefault.copyWith(
+                                                fontStyle: FontStyle.italic,
+                                                color: MyColor.smallTextColor1,
+                                                fontSize:
+                                                    Dimensions.fontSmall)),
+                                      ),
+                                    ],
+                                  )
+                                : widget.transactionInfo.accountType ==
+                                        "individual"
+                                    ? Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.person,
+                                                size: 12,
+                                                color: MyColor.primaryColor,
+                                              ),
+                                              const SizedBox(
+                                                width: 8.0,
+                                              ),
+                                              Text(
+                                                  "${widget.transactionInfo.firstname!} ${widget.transactionInfo.lastname!}",
+                                                  style: interRegularDefault
+                                                      .copyWith(
+                                                          fontStyle:
+                                                              FontStyle.italic,
+                                                          color: MyColor
+                                                              .smallTextColor1,
+                                                          fontSize: Dimensions
+                                                              .fontSmall)),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 22.0),
+                                            child: Text(
+                                                "${widget.transactionInfo.accountNumber}",
+                                                style: interRegularDefault
+                                                    .copyWith(
+                                                        fontStyle:
+                                                            FontStyle.italic,
+                                                        color: MyColor
+                                                            .smallTextColor1,
+                                                        fontSize: Dimensions
+                                                            .fontSmall)),
+                                          ),
+                                        ],
+                                      )
+                                    : Column(
+                                        children: [
+                                          Text(
+                                              "${widget.transactionInfo.firstname!} ${widget.transactionInfo.lastname!}",
+                                              style:
+                                                  interRegularDefault.copyWith(
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                      color: MyColor
+                                                          .smallTextColor1,
+                                                      fontSize: Dimensions
+                                                          .fontSmall)),
+                                          Text(
+                                              "${widget.transactionInfo.accountNumber}",
+                                              style:
+                                                  interRegularDefault.copyWith(
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                      color: MyColor
+                                                          .smallTextColor1,
+                                                      fontSize: Dimensions
+                                                          .fontSmall)),
+                                        ],
+                                      ))
+                        : Container(
+                            width: 150,
+                            height: 25,
+                            padding: const EdgeInsets.only(
+                                right: 20.0, bottom: 0, left: 10),
+                            child: widget.transactionInfo.accountType ==
+                                    "company"
+                                ? Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.apartment,
+                                        size: 12,
+                                        color: MyColor.primaryColor,
+                                      ),
+                                      Text(
+                                        "${widget.transactionInfo.type}".tr,
+                                        style: interRegularDefault.copyWith(
+                                            fontStyle: FontStyle.italic,
+                                            color: MyColor.smallTextColor1,
+                                            fontSize: 12.0),
+                                      )
+                                    ],
+                                  )
+                                : widget.transactionInfo.accountType ==
+                                        "individual"
+                                    ? Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.apartment,
+                                            size: 12,
+                                            color: MyColor.primaryColor,
+                                          ),
+                                          Text(
+                                            "${widget.transactionInfo.type}".tr,
+                                            style: interRegularDefault.copyWith(
+                                                fontStyle: FontStyle.italic,
+                                                color: MyColor.smallTextColor1,
+                                                fontSize: 12.0),
+                                          )
+                                        ],
+                                      )
+                                    : Text(
+                                        "${widget.transactionInfo.type}".tr,
+                                        style: interRegularDefault.copyWith(
+                                            fontStyle: FontStyle.italic,
+                                            color: MyColor.smallTextColor1,
+                                            fontSize: 12.0),
+                                      ),
                           ),
-                      )
-                      : Container(
-                          // width: 100,
-                          // height: 25,
-                         padding: const EdgeInsets.only(right: 50.0, bottom: 8),
-                          child: Text(
-                            "${widget.transactionInfo.type}".tr,
-                            style: interRegularDefault.copyWith(
-                                fontStyle: FontStyle.italic,
-                                color: MyColor.smallTextColor1,
-                                fontSize: 12.0),
-                          ),
-                        ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 10, bottom: 8),
-                    child: CardColumnForAmountText(
-                      header: MyStrings.amount,
-                      body: '${widget.amountData} ${controller.currency}',
-                      textColor: controller.changeTextColor(widget.trxType),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10, bottom: 17),
+                      child: CardColumnForAmountText(
+                        header: MyStrings.amount,
+                        body: '${widget.amountData} ${controller.currency}',
+                        textColor: controller.changeTextColor(widget.trxType),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-
 
               // const WidgetDivider(
               //   lineColor: MyColor.titleColor,
               //   space: Dimensions.space5,
               // ),
-
 
               if (isExpanded) ...[
                 Row(
@@ -398,23 +523,12 @@ class _CustomTransactionCardState extends State<CustomTransactionCard> {
                   children: [
                     Container(
                       width: 130,
-                      child: CardColumn2(header: MyStrings.trx, body: widget.trxData),
+                      child: CardColumn2(
+                          header: MyStrings.trx, body: widget.trxData),
                     ),
-                    const SizedBox(width: 10.0,),
-                    // Container(
-                    //   height: 30.0,
-                    //   width: 60.0,
-                    //   // color: Colors.red,
-                    //   alignment: Alignment.topLeft,
-                    //   child: Text(
-                    //     '${widget.postBalanceData} ${controller.currency}',
-                    //     style: interRegularDefault.copyWith(
-                    //         fontStyle: FontStyle.italic,
-                    //         color: MyColor.smallTextColor1,
-                    //         fontSize: Dimensions.fontSmall),
-                    //     overflow: TextOverflow.ellipsis,
-                    //   ),
-                    // ),
+                    const SizedBox(
+                      width: 10.0,
+                    ),
                     Container(
                       child: Text(
                         // MyStrings.details.tr,
@@ -428,7 +542,6 @@ class _CustomTransactionCardState extends State<CustomTransactionCard> {
                     ),
                   ],
                 ),
-
               ],
             ],
           ),

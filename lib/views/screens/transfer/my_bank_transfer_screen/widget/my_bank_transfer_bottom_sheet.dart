@@ -1,6 +1,4 @@
-
-
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:viser_bank/core/helper/string_format_helper.dart';
 import 'package:viser_bank/core/utils/dimensions.dart';
@@ -87,9 +85,6 @@ class MyBankTransferBottomSheet{
                         }
                         if(value.toString().length >4){
                           controller.searchTransferAccountApi(value);
-
-
-
                         }
 
                       }

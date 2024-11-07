@@ -1,7 +1,3 @@
-
-
-
-
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
@@ -23,42 +19,85 @@ class ShowSearchResultScreen extends StatefulWidget {
 class _ShowSearchResultScreenState extends State<ShowSearchResultScreen> {
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: MyColor.colorWhite,
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-        elevation: 0,
-        backgroundColor: MyColor.primaryColor,
-      ),
-      body: GetBuilder<MyBankTransferController>(builder: (controller)=>ListView.builder(
-        shrinkWrap: true,
-       itemCount: controller.searchApiModel.data!.users!.length,
-    itemBuilder: (_,index){
-
-        return Obx(()=> controller.isLoadingSearch.value?const CustomLoader(): Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ListTile(
-                onTap: (){
-                  controller.accountNameController.text  = controller.searchApiModel.data!.users![index].username.toString();
-                  controller.accountNoController.text  = controller.searchApiModel.data!.users![index].accountNumber.toString();
-                    Get.back();
-                  controller.searchApiModel.data!.users!.clear();
-                },
-              title: Text(controller.searchApiModel.data!.users![index].username.toString(),
-               style: interRegularDefault.copyWith(color: MyColor.colorBlack,fontWeight: FontWeight.w600),
-              ),
-            subtitle: Text(controller.searchApiModel.data!.users![index].accountNumber.toString(),
-           style: interRegularDefault.copyWith(color: MyColor.colorBlack),
-    ),
-              ),
-              const Divider(
-                color: MyColor.primaryColor,
-              ),
-            ],
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+          elevation: 0,
+          backgroundColor: MyColor.primaryColor,
+        ),
+        body: GetBuilder<MyBankTransferController>(
+          builder: (controller) => ListView.builder(
+            shrinkWrap: true,
+            itemCount: controller.searchApiModel.data!.users!.length,
+            itemBuilder: (_, index) {
+              return Obx(
+                () => controller.isLoadingSearch.value
+                    ? const CustomLoader()
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListTile(
+                            onTap: () {
+                              controller.accountNameController.text = controller
+                                  .searchApiModel.data!.users![index].username
+                                  .toString();
+                              controller.accountNoController.text = controller
+                                  .searchApiModel
+                                  .data!
+                                  .users![index]
+                                  .accountNumber
+                                  .toString();
+                              Get.back();
+                              controller.searchApiModel.data!.users!.clear();
+                            },
+                            leading: controller.searchApiModel.data!
+                                        .users![index].accountType ==
+                                    "company"
+                                ? const Padding(
+                                    padding: EdgeInsets.only(bottom: 18),
+                                    child: Icon(
+                                      Icons.apartment,
+                                      size: 15,
+                                      color: MyColor.primaryColor,
+                                    ),
+                                  )
+                                : controller.searchApiModel.data!.users![index]
+                                            .accountType ==
+                                        "individual"
+                                    ? const Padding(
+                                        padding: EdgeInsets.only(bottom: 18),
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 15,
+                                          color: MyColor.primaryColor,
+                                        ),
+                                      )
+                                    : Container(),
+                            title: Text(
+                              controller
+                                  .searchApiModel.data!.users![index].username
+                                  .toString(),
+                              style: interRegularDefault.copyWith(
+                                  color: MyColor.colorBlack,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            subtitle: Text(
+                              controller.searchApiModel.data!.users![index]
+                                  .accountNumber
+                                  .toString(),
+                              style: interRegularDefault.copyWith(
+                                  color: MyColor.colorBlack),
+                            ),
+                          ),
+                          const Divider(
+                            color: MyColor.primaryColor,
+                          ),
+                        ],
+                      ),
+              );
+            },
           ),
-        );
-    },),
-    ));
+        ));
   }
 }

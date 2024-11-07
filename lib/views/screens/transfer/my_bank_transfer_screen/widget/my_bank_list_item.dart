@@ -17,6 +17,7 @@ class MyBankTransferListItem extends StatelessWidget {
 
   final String accountName;
   final String accountNumber;
+  final String accountType;
   final String shortName;
   final int index;
 
@@ -24,12 +25,15 @@ class MyBankTransferListItem extends StatelessWidget {
     Key? key,
     required this.accountName,
     required this.accountNumber,
+    required this.accountType,
     required this.shortName,
     required this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print("AccountType $accountType");
+    print("AccountType1 $accountName");
     return GetBuilder<MyBankTransferController>(builder: (controller)=>InkWell(
       onTap: (){
       },
@@ -76,6 +80,25 @@ class MyBankTransferListItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      accountType == "company" ? Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: Icon(Icons.apartment, size: 15, color: MyColor.primaryColor,),
+                          ),
+                          const SizedBox(width: 5.0,),
+                          CardColumn(header: MyStrings.accountName, body: accountName),
+                        ],
+                      ) : accountType == "individual" ?  Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 8.0),
+                            child: Icon(Icons.person, size: 15, color: MyColor.primaryColor,),
+                          ),
+                          const SizedBox(width: 5.0,),
+                          CardColumn(header: MyStrings.accountName, body: accountName),
+                        ],
+                      ) :
                       CardColumn(header: MyStrings.accountName, body: accountName),
                       CardColumn(header: MyStrings.accountNumber, body: accountNumber),
                       // CardColumn(alignmentEnd:true,header: MyStrings.shortName, body: shortName)
